@@ -1,0 +1,13 @@
+CEP: 01310-907
+Logradouro: Avenida Paulista
+Complemento: 648
+Unidade: Edifício Nações Unidas
+Bairro: Bela Vista
+Localidade: São Paulo
+UF: SP
+Estado: São Paulo
+Região: Sudeste
+IBGE: 3550308
+GIA: 1004
+DDD: 11
+SIAFI: 7107

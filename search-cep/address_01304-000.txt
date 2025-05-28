@@ -1,0 +1,13 @@
+CEP: 01304-000
+Logradouro: Rua Augusta
+Complemento: até 698 - lado par
+Unidade: 
+Bairro: Consolação
+Localidade: São Paulo
+UF: SP
+Estado: São Paulo
+Região: Sudeste
+IBGE: 3550308
+GIA: 1004
+DDD: 11
+SIAFI: 7107
