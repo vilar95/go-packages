@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao Server Mux</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4f8cff 0%, #a6e1fa 100%);
+            font-family: 'Montserrat', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            padding: 40px 60px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #2563eb;
+            margin-bottom: 16px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: #333;
+            font-size: 1.15rem;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 10px;
+                max-width: 95vw;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bem-vindo!</h1>
+        <p>Esta é a página pública do <strong>Server Mux</strong>.<br>
+            Aproveite para explorar e conhecer mais sobre nossos serviços.</p>
+    </div>
+</body>
+
+</html>
