@@ -21,7 +21,7 @@ func SearchAllProducts() Products {
 	db := db.ConnectDB()
 
 	// Executa a query de seleção de todos os produtos
-	selectProducts, err := db.Query("SELECT * FROM products")
+	selectProducts, err := db.Query("SELECT * FROM products ORDER BY id ASC")
 
 	if err != nil {
 		log.Println("Não foi possível fazer a busca de todos os produtos no banco de dados")
@@ -76,6 +76,52 @@ func DeleteProductByID(id string) {
 	// Executa a query de exclusão
 	deleteProduct.Exec(id)
 	log.Println("Produto excluído com sucesso")
+	// Fecha a conexão com o banco de dados
+	defer db.Close()
+}
+
+func GetProductByID(id string) Product {
+	db := db.ConnectDB()
+	var product Product
+	// Executa a query de seleção do produto pelo ID
+	selectProduct, err := db.Query("SELECT * FROM products WHERE id=$1", id)
+	if err != nil {
+		log.Println("Não foi possível buscar o produto no banco de dados")
+		panic(err.Error())
+	}
+	for selectProduct.Next() {
+
+		err := selectProduct.Scan(&product.Id, &product.Name, &product.Description, &product.Price, &product.Quantity)
+		if err != nil {
+			panic(err.Error())
+		}
+		// Atualiza o produto com os dados buscados
+		updateProduct := Product{
+			Id:          product.Id,
+			Name:        product.Name,
+			Description: product.Description,
+			Price:       product.Price,
+			Quantity:    product.Quantity,
+		}
+		product = updateProduct
+	}
+	// Fecha a conexão com o banco de dados
+	defer db.Close()
+	return product
+}
+
+func UpdateProductByID(id int, name string, description string, price float64, quantity int) {
+	log.Println("Iniciando a atualização do produto")
+	db := db.ConnectDB()
+	// Prepara a query de atualização com os valores recebidos
+	updateProduct, err := db.Prepare("UPDATE products SET nome=$1, descricao=$2, preco=$3, quantidade=$4 WHERE id=$5")
+	if err != nil {
+		log.Println("Não foi possível preparar a atualização do produto no banco de dados")
+		panic(err.Error())
+	}
+	// Executa a query de atualização
+	updateProduct.Exec(name, description, price, quantity, id)
+	log.Println("Produto atualizado com sucesso")
 	// Fecha a conexão com o banco de dados
 	defer db.Close()
 }

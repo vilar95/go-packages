@@ -1,0 +1,84 @@
+{{ define "EditProduct" }}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+{{ template "_head" "Editar Produto" }}
+
+<body>
+    {{ template "_menu" }}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h1>Editar Produto</h1>
+                        <p>Atualizar informações do produto no catálogo TechWear</p>
+                    </div>
+
+                    <form method="POST" action="/update-product">
+                        <input type="hidden" name="id" value="{{ .Id }}">
+                        <div class="row row-custom">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="required-field">
+                                        <i class="fas fa-tag"></i>Nome do Produto
+                                    </label>
+                                    <input type="text" name="name" class="form-control" value="{{ .Name }}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-custom">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="required-field">
+                                        <i class="fas fa-align-left"></i>Descrição
+                                    </label>
+                                    <textarea name="description" class="form-control" rows="3"
+                                        required>{{ .Description }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-custom">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="required-field">
+                                        <i class="fas fa-dollar-sign"></i>Preço (R$)
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">R$</span>
+                                        </div>
+                                        <input type="number" name="price" class="form-control" step="0.01" min="0"
+                                            value="{{ .Price }}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="required-field">
+                                        <i class="fas fa-box"></i>Quantidade em Estoque
+                                    </label>
+                                    <input type="number" name="quantity" class="form-control" min="0"
+                                        value="{{ .Quantity }}" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-save"></i> Salvar Alterações
+                            </button>
+                            <a href="/" class="btn-back">
+                                <i class="fas fa-times-circle"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{{ end }}
