@@ -11,6 +11,7 @@ import (
 func main() {
 	r := gin.Default()
 	r.GET("/pizzas", GetPizzas)
+	r.POST("/create-pizza", CreatePizza)
 
 	r.Run(":8080")
 
@@ -26,4 +27,14 @@ func GetPizzas(c *gin.Context) {
 	}
 
 	c.JSON(200, Pizzas)
+}
+
+func CreatePizza(c *gin.Context) {
+	var newPizza model.Pizza
+	if err := c.ShouldBindJSON(&newPizza); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(201, newPizza)
 }
